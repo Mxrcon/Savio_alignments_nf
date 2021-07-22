@@ -2,6 +2,7 @@ nextflow.enable.dsl = 2
 
 include { DOWNLOAD_GENOMES } from "./modules/download_genomes/download_genomes.nf"
 include { PROKKA } from "./modules/prokka/prokka.nf"
+
 include { GET_GENES } from "./modules/get_genes/get_genes.nf"
 include { GET_RRNA } from "./modules/get_genes/get_rrna.nf"
 include { ALIGN_MARKERS } from "./modules/align_markers/align_markers.nf"
