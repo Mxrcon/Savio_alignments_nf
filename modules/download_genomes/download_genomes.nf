@@ -7,13 +7,12 @@ params.should_publish = true
 process DOWNLOAD_GENOMES {
     tag "${genomeId}"
     publishDir params.results_dir, mode: params.save_mode, enabled: params.should_publish
-    errorStrategy 'ignore'
 
     input:
     val(genomeId)
 
     output:
-    tuple val(genomeId), path("${genomeId}*")
+    tuple val(genomeId), path("*.fa")
 
     script:
     """
