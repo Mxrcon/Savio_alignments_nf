@@ -17,7 +17,7 @@ process DOWNLOAD_GENOMES {
 
     script:
     """
-    ncbi-acc-download ${genomeId} -F fasta
+    ncbi-acc-download ${genomeId} -F fasta --api-key ${params.ncbi_apikey}
     """
 
     stub:
