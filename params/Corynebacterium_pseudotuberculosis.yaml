@@ -1,8 +1,22 @@
+rrna_names:
+  - "16S"
+  - "23S"
+  - "5S"
 
-ncb_apikey:
+genes_names:
+  - "dnaA"
+  - "rpoB"
+  - "recA"
+  - "gyrB"
+  - "gyrA"
+
+ncbi_apikey:
   "FIXME"
 
-genome_ids:
+outdir:
+  "real_results"
+
+genomes_ids:
   - "NC_017301.2"
   - "NZ_CP021251.1"
   - "NZ_CP015188.1"
