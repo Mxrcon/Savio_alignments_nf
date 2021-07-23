@@ -13,6 +13,7 @@ process PROKKA {
     tuple val(genomeName), path(fastaFile)
     output:
     path("${genomeName}")
+    tuple val(genomeName), path("${genomeName}/*.gbk"), emit: anotated_genome
 
     script:
 
@@ -27,6 +28,7 @@ process PROKKA {
 
 
     mkdir ${genomeName}
+    touch ${genomeName}/${genomeName}.gbk
 
     """
 }
