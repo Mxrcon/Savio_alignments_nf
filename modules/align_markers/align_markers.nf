@@ -11,23 +11,20 @@ process ALIGN_MARKERS {
     input:
     tuple val(markerName), path("*")
     output:
-    tuple val(markerName), path("aligned/*.fasta")
+    tuple val(markerName), path("*.aligned.fasta")
 
     script:
 
     """
     cat *${markerName}* >> ${markerName}.fasta
     clustalo -i ${markerName}.fasta -o ${markerName}_aligned.fasta --outfmt=fa
-    mkdir aligned
-    mv ${markerName}_aligned.fasta aligned/.
     """
 
     stub:
 
     """
     echo "clustalo -i ${markerName}.fasta -o ${markerName}_aligned.fasta --outfmt=fa"
-    mkdir aligned
-    touch aligned/${markerName}_aligned.fasta
+    touch ${markerName}_aligned.fasta
 
     """
 }
