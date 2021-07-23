@@ -11,18 +11,23 @@ process ALIGN_MARKERS {
     input:
     tuple val(markerName), path("*")
     output:
-    tuple val(markerName), path("*.fasta")
+    tuple val(markerName), path("aligned/*.fasta")
 
     script:
 
     """
     cat *${markerName}* >> ${markerName}.fasta
+    clustalo -i ${markerName}.fasta -o ${markerName}_aligned.fasta --outfmt=fa
+    mkdir aligned
+    mv ${markerName}_aligned.fasta aligned/.
     """
 
     stub:
 
     """
-    echo "find_ribossomal_rna.py ${genomeName} ${ribossomal_rna_name}"
-    touch ${genomeName}_${ribossomal_rna_name}.fasta
+    echo "clustalo -i ${markerName}.fasta -o ${markerName}_aligned.fasta --outfmt=fa"
+    mkdir aligned
+    touch aligned/${markerName}_aligned.fasta
+
     """
 }
