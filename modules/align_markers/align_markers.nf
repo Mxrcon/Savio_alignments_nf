@@ -12,6 +12,7 @@ process ALIGN_MARKERS {
     tuple val(markerName), path("*")
     output:
     path("*aligned.fasta")
+    tuple val(markerName), path("*.aligned.fasta")
 
     script:
 
@@ -24,7 +25,6 @@ process ALIGN_MARKERS {
 
     """
     echo "clustalo -i ${markerName}.fasta -o ${markerName}_aligned.fasta --outfmt=fa"
-    touch ${markerName}_aligned.fasta
 
     """
 }
