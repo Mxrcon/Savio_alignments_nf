@@ -11,7 +11,7 @@ process ALIGN_MARKERS {
     input:
     tuple val(markerName), path("*")
     output:
-    tuple val(markerName), path("*.aligned.fasta")
+    tuple val(markerName), path("*aligned.fasta")
 
     script:
 
