@@ -5,6 +5,8 @@ include { PROKKA } from "./modules/prokka/prokka.nf"
 include { GET_GENES } from "./modules/get_genes/get_genes.nf"
 include { GET_RRNA } from "./modules/get_genes/get_rrna.nf"
 include { ALIGN_MARKERS } from "./modules/align_markers/align_markers.nf"
+include { CONCATENATE_ALIGNMENTS } from "./modules/concatenate_alignments/concatenate_alignments.nf"
+include { RAXML } from "./modules/raxml/raxml.nf"
 
 workflow {
     id_list_ch = Channel.fromList(params.genomes_ids)
@@ -19,4 +21,6 @@ workflow {
 // Exporting markers and joining them together
     markers_ch = Channel.of().mix(GET_RRNA.out.groupTuple(),GET_GENES.out.groupTuple())
     ALIGN_MARKERS(markers_ch)
+    CONCATENATE_ALIGNMENTS(ALIGN_MARKERS.out.collect())
+    RAXML(CONCATENATE_ALIGNMENTS.out)
 }
